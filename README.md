@@ -13,3 +13,10 @@ This project was intended to learn about the Unified Robot Description Format fr
    ```
    ros2 launch Project2_rabeckes eve.launch.xml
    ```
+
+## Gimbal Lock
+Gimbal lock is a phenemenon that happens when using Euler angles (yaw, pitch, roll) to describe 3-dimensional rotation. When two of these axis are aligned, they become locked and a degree of freedom is lost. In effect, the changing of the angle of two of the axis will result in the same rotation. This phenemenon is demonstrated below with the EVE URDF design. When the roll and pitch of the arm are aligned to 90 degrees (positive or negative), the roll and yaw angles become locked and cause the same rotation. These angles will continue to be locked until the yaw is moved away from 90 degrees "unlocking" the roll in the process.
+
+![axis alignment](https://github.com/Robust-Autonomous-Systems-Laboratory/Project2_rabeckes/blob/main/images/alignment.png)
+
+![gimbal lock](https://github.com/Robust-Autonomous-Systems-Laboratory/Project2_rabeckes/blob/main/images/gimbal_lock.gif)
