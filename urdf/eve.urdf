@@ -2,7 +2,7 @@
 <robot name="eve">
 
 <material name="white">
-  <color rgba="1 1 1 0.5"/>
+  <color rgba="1 1 1 1"/>
 </material>
 
 <link name="base_link">
@@ -17,33 +17,77 @@
 <link name="right_arm">
   <visual>
     <geometry>
-      <box size="0.5 0.3 0.01"/>
+      <box size="0.5 0.2 0.01"/>
     </geometry>
-    <origin xyz="0.25 0 0" rpy="0 0 0"/>
+    <origin xyz="0.15 0 -0.1" rpy="0 1 0"/>
     <material name="white"/>
   </visual>
 </link>
+<link name="right_arm_x"/>
+<link name="right_arm_y"/>
+<link name="right_arm_z"/>
 
-<joint name="base_to_right_arm" type="fixed">
+<!-- Multi-joint idea taken from discussions with Jackson -->
+<joint name="right_arm_roll" type="continuous">
   <parent link="base_link"/>
+  <child link="right_arm_x"/>
+  <origin xyz="0.2 0 0.2"/>
+  <axis xyz="1 0 0"/>
+</joint>
+<joint name="right_arm_pitch" type="continuous">
+  <parent link="right_arm_x"/>
+  <child link="right_arm_y"/>
+  <origin xyz="0 0 0"/>
+  <axis xyz="0 1 0"/>
+</joint>
+<joint name="right_arm_yaw" type="continuous">
+  <parent link="right_arm_y"/>
+  <child link="right_arm_z"/>
+  <origin xyz="0 0 0"/>
+  <axis xyz="0 0 1"/>
+</joint>
+<joint name="base_to_right_arm" type="fixed">
+  <parent link="right_arm_z"/>
   <child link="right_arm"/>
-  <origin xyz="0.25 0 0"/>
+  <origin xyz="0 0 0"/>
 </joint>
 
 <link name="left_arm">
   <visual>
     <geometry>
-      <box size="0.5 0.3 0.01"/>
+      <box size="0.5 0.2 0.01"/>
     </geometry>
-    <origin xyz="-0.25 0 0" rpy="0 0 0"/>
+    <origin xyz="-0.15 0 -0.1" rpy="0 -1 0"/>
     <material name="white"/>
   </visual>
 </link>
+<link name="left_arm_x"/>
+<link name="left_arm_y"/>
+<link name="left_arm_z"/>
 
-<joint name="base_to_left_arm" type="fixed">
+
+<joint name="left_arm_roll" type="continuous">
   <parent link="base_link"/>
+  <child link="left_arm_x"/>
+  <origin xyz="-0.2 0 0.2"/>
+  <axis xyz="1 0 0"/>
+</joint>
+<joint name="left_arm_pitch" type="continuous">
+  <parent link="left_arm_x"/>
+  <child link="left_arm_y"/>
+  <origin xyz="0 0 0"/>
+  <axis xyz="0 1 0"/>
+</joint>
+<joint name="left_arm_yaw" type="continuous">
+  <parent link="left_arm_y"/>
+  <child link="left_arm_z"/>
+  <origin xyz="0 0 0"/>
+  <axis xyz="0 0 1"/>
+</joint>
+<joint name="base_to_left_arm" type="fixed">
+  <parent link="left_arm_z"/>
   <child link="left_arm"/>
-  <origin xyz="-0.25 0 0"/>
+  <origin xyz="0 0 0"/>
 </joint>
 
 <link name="head">
@@ -51,7 +95,7 @@
     <geometry>
       <sphere radius="0.2"/>
     </geometry>
-    <origin xyz="0 0 0.3" rpy="0 0 0"/>
+    <origin xyz="0 0 0.25" rpy="0 0 0"/>
     <material name="white"/>
   </visual>
 </link>
