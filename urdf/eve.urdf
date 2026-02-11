@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<robot name="eve">
+
+<material name="white">
+  <color rgba="1 1 1 0.5"/>
+</material>
+
+<link name="base_link">
+  <visual>
+    <geometry>
+      <cylinder length="0.6" radius="0.2"/>
+    </geometry>
+    <material name="white"/>
+  </visual>
+</link>
+
+<link name="right_arm">
+  <visual>
+    <geometry>
+      <box size="0.5 0.3 0.01"/>
+    </geometry>
+    <origin xyz="0.25 0 0" rpy="0 0 0"/>
+    <material name="white"/>
+  </visual>
+</link>
+
+<joint name="base_to_right_arm" type="fixed">
+  <parent link="base_link"/>
+  <child link="right_arm"/>
+  <origin xyz="0.25 0 0"/>
+</joint>
+
+<link name="left_arm">
+  <visual>
+    <geometry>
+      <box size="0.5 0.3 0.01"/>
+    </geometry>
+    <origin xyz="-0.25 0 0" rpy="0 0 0"/>
+    <material name="white"/>
+  </visual>
+</link>
+
+<joint name="base_to_left_arm" type="fixed">
+  <parent link="base_link"/>
+  <child link="left_arm"/>
+  <origin xyz="-0.25 0 0"/>
+</joint>
+
+<link name="head">
+  <visual>
+    <geometry>
+      <sphere radius="0.2"/>
+    </geometry>
+    <origin xyz="0 0 0.3" rpy="0 0 0"/>
+    <material name="white"/>
+  </visual>
+</link>
+
+<joint name="base_to_head" type="fixed">
+  <parent link="base_link"/>
+  <child link="head"/>
+  <origin xyz="0 0 0.3"/>
+</joint>
+
+</robot>
